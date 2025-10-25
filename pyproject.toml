@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=61.0", "cython"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyecm-tools"
+version = "1.0.0"
+authors = [
+    { name="Hammerok", email="etsy2900@gmail.com" },
+]
+description = "A Python wrapper for Neill Corlett's ECM tools for encoding and decoding PSX CD images."
+readme = "README.md"
+license = { file="LICENSE" }
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: System :: Archiving :: Compression",
+    "Development Status :: 4 - Beta",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/your_username/pyecm-project"
+"Bug Tracker" = "https://github.com/your_username/pyecm-project/issues"

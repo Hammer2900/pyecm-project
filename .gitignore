@@ -1,0 +1,14 @@
+.venv/
+venv/
+build/
+dist/
+*.egg-info/
+*.so
+*.pyd
+src/pyecm/pyecm.c
+__pycache__/
+*.pyc
+*.pyo
+.idea/
+.vscode/
+my_test_image.*
