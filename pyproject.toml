@@ -10,15 +10,26 @@ authors = [
 ]
 description = "A Python wrapper for Neill Corlett's ECM tools for encoding and decoding PSX CD images."
 readme = "README.md"
-license = "MIT"
+license = { file = "LICENSE" }
 requires-python = ">=3.8"
 classifiers = [
     "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
     "Topic :: System :: Archiving :: Compression",
     "Development Status :: 4 - Beta",
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/your_username/pyecm-project"
-"Bug Tracker" = "https://github.com/your_username/pyecm-project/issues"
+"Homepage" = "https://github.com/Hammer2900/pyecm-project"
+"Bug Tracker" = "https://github.com/Hammer2900/pyecm-project/issues"
+
+
+[tool.cibuildwheel]
+skip = ["*i686", "*aarch64", "*ppc64le", "*s390x"]
+
+before-build = "pip install cython"
+
+test-command = "python {project}/test_install.py"
+test-requires = []
+test-extras = []
