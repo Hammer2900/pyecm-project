@@ -1,0 +1,2 @@
+recursive-include src/pyecm/c_src *
+include src/pyecm/cecm.pxd

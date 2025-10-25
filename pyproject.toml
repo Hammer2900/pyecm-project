@@ -10,11 +10,10 @@ authors = [
 ]
 description = "A Python wrapper for Neill Corlett's ECM tools for encoding and decoding PSX CD images."
 readme = "README.md"
-license = { file="LICENSE" }
+license = "MIT"
 requires-python = ">=3.8"
 classifiers = [
     "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
     "Topic :: System :: Archiving :: Compression",
     "Development Status :: 4 - Beta",

@@ -1,6 +1,6 @@
 # distutils: language = c
 
-cimport cecm
+from . cimport cecm
 from libc.stdio cimport FILE, fopen, fclose
 import os
 import traceback
