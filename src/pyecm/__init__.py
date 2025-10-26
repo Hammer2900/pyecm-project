@@ -1,3 +1,3 @@
-from .pyecm import encode, decode
+from ._core import encode, decode
 
 __all__ = ['encode', 'decode']

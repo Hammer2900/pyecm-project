@@ -1,6 +1,6 @@
 # distutils: language = c
 
-from . cimport cecm
+from . cimport _cecm
 from libc.stdio cimport FILE, fopen, fclose
 import os
 import traceback
@@ -12,12 +12,10 @@ cdef void c_progress_callback(unsigned int current, unsigned int total, int type
         if py_callback is not None:
             py_callback(current, total, type)
     except Exception:
-        # Подавляем исключения из колбэка, чтобы не уронить C-код
         traceback.print_exc()
 
-# Инициализация таблиц при загрузке модуля
-cecm.ecm_eccedc_init()
-cecm.unecm_eccedc_init()
+_cecm.ecm_eccedc_init()
+_cecm.unecm_eccedc_init()
 
 def encode(input_path, output_path, progress=None):
     global py_callback
@@ -27,7 +25,7 @@ def encode(input_path, output_path, progress=None):
     cdef const char* c_out_path
     cdef FILE* fin
     cdef FILE* fout
-    cdef cecm.progress_callback cb
+    cdef _cecm.progress_callback cb
     cdef int ret
 
     py_callback = progress
@@ -50,7 +48,7 @@ def encode(input_path, output_path, progress=None):
         cb = &c_progress_callback if progress is not None else NULL
 
         print(f"Encoding {input_path} to {output_path}...")
-        ret = cecm.ecm_ecmify(fin, fout, cb)
+        ret = _cecm.ecm_ecmify(fin, fout, cb)
         if ret != 0:
             print()
             raise RuntimeError("ECM encoding failed.")
@@ -66,7 +64,7 @@ def decode(input_path, output_path, progress=None):
     cdef bytes py_in_path, py_out_path
     cdef const char* c_in_path, *c_out_path
     cdef FILE* fin, *fout
-    cdef cecm.progress_callback cb
+    cdef _cecm.progress_callback cb
     cdef int ret
 
     py_callback = progress
@@ -89,7 +87,7 @@ def decode(input_path, output_path, progress=None):
         cb = &c_progress_callback if progress is not None else NULL
 
         print(f"Decoding {input_path} to {output_path}...")
-        ret = cecm.unecm_unecmify(fin, fout, cb)
+        ret = _cecm.unecm_unecmify(fin, fout, cb)
         if ret != 0:
             print()
             raise RuntimeError("ECM decoding failed. The file might be corrupt.")
